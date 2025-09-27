@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>José Antonio Hernandez Velazquez</title>
+</head>
+
+<body>
+    <style>
+        :root{
+            --primary-teal: #005954;
+            --secondary-teal: #00736e;
+            --light-teal: #4d9d94;
+            --accent-coral: #ff6b35;
+            --neutral-light: #f8f9fa;
+            --neutral-dark: #2c3e50;
+            --gradient-primary: linear-gradient(135deg, #005954, #00736e);
+            --gradient-accent: linear-gradient(135deg, #ff6b35, #ff8c42);
+        }
+        
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: var(--neutral-dark);
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        /* Estilos mejorados para la barra de navegación */
+        .navbar {
+            background: var(--gradient-primary) !important;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 4px 20px rgba(0, 89, 84, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .navbar-brand {
+            color: var(--neutral-light) !important;
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .navbar-brand:hover {
+            color: var(--accent-coral) !important;
+            transform: scale(1.05);
+        }
+
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 30px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--neutral-light) !important;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 16px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .nav-link:hover {
+            background: var(--gradient-accent);
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Menú dropdown mejorado */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(145deg, white, #f8f9fa);
+            min-width: 220px;
+            box-shadow: 0 15px 35px rgba(0, 89, 84, 0.15);
+            border-radius: 12px;
+            padding: 15px 0;
+            z-index: 1001;
+            border: 1px solid rgba(0, 89, 84, 0.1);
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-item {
+            color: var(--neutral-dark) !important;
+            padding: 12px 25px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin: 2px 10px;
+            font-weight: 500;
+        }
+
+        .dropdown-item:hover {
+            background: var(--gradient-primary);
+            color: white !important;
+            transform: translateX(10px);
+            box-shadow: 0 4px 15px rgba(0, 89, 84, 0.3);
+        }
+
+        /* Responsive navbar */
+        .navbar-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--neutral-light);
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggle:hover {
+            color: var(--accent-coral);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .navbar-nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--cyclamen);
+                flex-direction: column;
+                padding: 20px;
+                gap: 10px;
+            }
+
+            .navbar-nav.active {
+                display: flex;
+            }
+
+            .navbar-toggle {
+                display: block;
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: block;
+                background-color: var(--oxford-blue);
+                margin-left: 20px;
+                margin-top: 10px;
+            }
+        }
+
+        /* Resto de estilos originales con ajustes */
+        .content-wrapper {
+            margin-top: 120px;
+            padding: 20px;
+        }
+
+        .tabla-ciber{
+            width: 90%;
+            margin: 40px auto;
+            border-collapse: collapse;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-shadow: 0 20px 60px rgba(0, 89, 84, 0.15);
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 89, 84, 0.1);
+        }
+        
+        .tabla-ciber thead{
+            background: var(--gradient-primary);
+            color: white;
+        }
+        
+        .tabla-ciber th,
+        .tabla-ciber td {
+            padding: 18px 22px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 89, 84, 0.1);
+        }
+        
+        .tabla-ciber th {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-size: 14px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .tabla-ciber tr:nth-child(even) {
+            background-color: rgba(77, 157, 148, 0.08);
+        }
+        
+        .tabla-ciber tr:nth-child(odd) {
+            background-color: white;
+        }
+        
+        .tabla-ciber tbody tr {
+            color: var(--neutral-dark);
+            transition: all 0.3s ease;
+        }
+        
+        .tabla-ciber tbody tr:hover {
+            background: linear-gradient(135deg, rgba(0, 89, 84, 0.1), rgba(77, 157, 148, 0.15));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 89, 84, 0.15);
+            cursor: pointer;
+        }
+        
+        .tabla-ciber img {
+            width: 70px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 89, 84, 0.2);
+        }
+        
+        h1 {
+            color: var(--primary-teal);
+            text-align: center;
+            margin: 30px 0 20px 0;
+            font-size: 3em;
+            font-weight: 700;
+            text-shadow: 0 4px 8px rgba(0, 89, 84, 0.3);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        h2 {
+            color: var(--accent-coral);
+            text-align: center;
+            margin: 15px 0 40px 0;
+            font-size: 2.2em;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(255, 107, 53, 0.3);
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+        }
+    </style>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a class="navbar-brand" href="index.html">Inicio</a>
+            
+            <button class="navbar-toggle" onclick="toggleMobileMenu()">☰</button>
+            
+            <ul class="navbar-nav" id="navbarNav">
+                <li class="nav-item">
+                    <a class="nav-link" href="unidad1.html">UNIDAD 1 Ciberseguridad</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="conceptos.html">Conceptos</a>
+                        <a class="dropdown-item" href="ataques.html">Ataques</a>
+                        <a class="dropdown-item" href="proteccion.html">Protección</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="unidad2.html">UNIDAD 2</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="./tomas04.html">Conceptos</a>
+                        <a class="dropdown-item" href="./tomas05.html">Ataques</a>
+                        <a class="dropdown-item" href="./tomas06.html">Protección</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="unidad3.html">UNIDAD 3</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="./tomas07.html">Conceptos</a>
+                        <a class="dropdown-item" href="./tomas08.html">Ataques</a>
+                        <a class="dropdown-item" href="./tomas09.html">Protección</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <h1>Ciberseguridad 01</h1>
+        <h2>Tipos de Malware</h2>
+
+        <table class="tabla-ciber">
+            <thead>
+                <tr>
+                    <th>Tipo de Malware</th>
+                    <th>Función</th>
+                    <th>Impacto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Virus</td>
+                    <td>Se copia a sí mismo e inserta en otros programas.</td>
+                    <td>Corrupción de archivos y fallos del sistema.</td>
+                </tr>
+                <tr>
+                    <td>Gusanos</td>
+                    <td>Se distribuyen por redes sin ayuda del usuario.</td>
+                    <td>Saturación de recursos, caídas en el sistema.</td>
+                </tr>
+                <tr>
+                    <td>Caballo de Troya</td>
+                    <td>Se disfraza de aplicación legítima.</td>
+                    <td>Robo de datos o control del dispositivo.</td>
+                </tr>
+                <tr>
+                    <td>Ransomware</td>
+                    <td>Bloquea la información y pide dinero para liberarla.</td>
+                    <td>Pérdida de archivos y pérdidas económicas.</td>
+                </tr>
+                <tr>
+                    <td>Spyware</td>
+                    <td>Monitorea las acciones del usuario en secreto.</td>
+                    <td>Invasión de la privacidad.</td>
+                </tr>
+                <tr>
+                    <td>Adware</td>
+                    <td>Muestra publicidad no deseada en exceso.</td>
+                    <td>Irritación y reducción de la velocidad del sistema.</td>
+                </tr>
+                <tr>
+                    <td>Rootkit</td>
+                    <td>Oculta la presencia de software malicioso.</td>
+                    <td>Mantiene acceso encubierto al sistema.</td>
+                </tr>
+                <tr>
+                    <td>Keylogger</td>
+                    <td>Registra las teclas presionadas.</td>
+                    <td>Obtención de contraseñas y datos privados.</td>
+                </tr>
+                <tr>
+                    <td>Fileless Malware</td>
+                    <td>Funciona directamente desde la memoria.</td>
+                    <td>Muy difícil de identificar, extremadamente sigiloso.</td>
+                </tr>
+                <tr>
+                    <td>Cryptojacker</td>
+                    <td>Exploita el dispositivo para minado de criptomonedas.</td>
+                    <td>Bajo rendimiento y mayor consumo eléctrico.</td>
+                </tr>
+                <tr>
+                    <td>Botnet</td>
+                    <td>Grupo de equipos infectados coordinados.</td>
+                    <td>Realizan ataques como DDoS masivos.</td>
+                </tr>
+                <tr>
+                    <td>Bomba lógica</td>
+                    <td>Se ejecuta al cumplirse una condición.</td>
+                    <td>Borra o altera datos críticos.</td>
+                </tr>
+                <tr>
+                    <td>Wiper</td>
+                    <td>Elimina permanentemente archivos.</td>
+                    <td>Pérdida irreversible de información.</td>
+                </tr>
+                <tr>
+                    <td>Scareware</td>
+                    <td>Engaña con advertencias falsas de seguridad.</td>
+                    <td>Lleva a instalar software malintencionado.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const navbarNav = document.getElementById('navbarNav');
+            navbarNav.classList.toggle('active');
+        }
+
+        // Cerrar menú móvil al hacer clic en un enlace
+        document.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarNav = document.getElementById('navbarNav');
+                navbarNav.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

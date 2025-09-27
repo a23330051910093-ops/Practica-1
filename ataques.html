@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>José Antonio Hernandez Velazquez - Ataques</title>
+</head>
+
+<body>
+    <style>
+        :root{
+            --primary-teal: #005954;
+            --secondary-teal: #00736e;
+            --light-teal: #4d9d94;
+            --accent-coral: #ff6b35;
+            --neutral-light: #f8f9fa;
+            --neutral-dark: #2c3e50;
+            --gradient-primary: linear-gradient(135deg, #005954, #00736e);
+            --gradient-accent: linear-gradient(135deg, #ff6b35, #ff8c42);
+        }
+        
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: var(--neutral-dark);
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        /* Estilos mejorados para la barra de navegación */
+        .navbar {
+            background: var(--gradient-primary) !important;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 4px 20px rgba(0, 89, 84, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .navbar-brand {
+            color: var(--neutral-light) !important;
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .navbar-brand:hover {
+            color: var(--accent-coral) !important;
+            transform: scale(1.05);
+        }
+
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 30px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--neutral-light) !important;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 16px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .nav-link:hover {
+            background: var(--gradient-accent);
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Menú dropdown mejorado */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(145deg, white, #f8f9fa);
+            min-width: 220px;
+            box-shadow: 0 15px 35px rgba(0, 89, 84, 0.15);
+            border-radius: 12px;
+            padding: 15px 0;
+            z-index: 1001;
+            border: 1px solid rgba(0, 89, 84, 0.1);
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-item {
+            color: var(--neutral-dark) !important;
+            padding: 12px 25px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin: 2px 10px;
+            font-weight: 500;
+        }
+
+        .dropdown-item:hover {
+            background: var(--gradient-primary);
+            color: white !important;
+            transform: translateX(10px);
+            box-shadow: 0 4px 15px rgba(0, 89, 84, 0.3);
+        }
+
+        /* Responsive navbar */
+        .navbar-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--neutral-light);
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggle:hover {
+            color: var(--accent-coral);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .navbar-nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--gradient-primary);
+                flex-direction: column;
+                padding: 20px;
+                gap: 10px;
+                border-radius: 0 0 16px 16px;
+            }
+
+            .navbar-nav.active {
+                display: flex;
+            }
+
+            .navbar-toggle {
+                display: block;
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: block;
+                background: rgba(255, 255, 255, 0.1);
+                margin-left: 20px;
+                margin-top: 10px;
+                backdrop-filter: blur(10px);
+            }
+
+            .tabla-ciber {
+                width: 95%;
+                font-size: 14px;
+            }
+
+            .tabla-ciber th,
+            .tabla-ciber td {
+                padding: 12px 8px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            h2 {
+                font-size: 1.8em;
+            }
+        }
+
+        /* Resto de estilos originales con ajustes */
+        .content-wrapper {
+            margin-top: 120px;
+            padding: 20px;
+        }
+
+        .tabla-ciber{
+            width: 90%;
+            margin: 40px auto;
+            border-collapse: collapse;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-shadow: 0 20px 60px rgba(0, 89, 84, 0.15);
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 89, 84, 0.1);
+        }
+        
+        .tabla-ciber thead{
+            background: var(--gradient-primary);
+            color: white;
+        }
+        
+        .tabla-ciber th,
+        .tabla-ciber td {
+            padding: 18px 22px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 89, 84, 0.1);
+            vertical-align: top;
+        }
+        
+        .tabla-ciber th {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-size: 14px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .tabla-ciber tr:nth-child(even) {
+            background-color: rgba(77, 157, 148, 0.08);
+        }
+        
+        .tabla-ciber tr:nth-child(odd) {
+            background-color: white;
+        }
+        
+        .tabla-ciber tbody tr {
+            color: var(--neutral-dark);
+            transition: all 0.3s ease;
+        }
+        
+        .tabla-ciber tbody tr:hover {
+            background: linear-gradient(135deg, rgba(0, 89, 84, 0.1), rgba(77, 157, 148, 0.15));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 89, 84, 0.15);
+            cursor: pointer;
+        }
+        
+        .tabla-ciber img {
+            width: 70px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 89, 84, 0.2);
+        }
+
+        .icon-attack {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            margin-right: 10px;
+            box-shadow: 0 4px 15px rgba(0, 89, 84, 0.3);
+        }
+
+        .phishing { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .malware { background: linear-gradient(135deg, #8e44ad, #71368a); }
+        .ransomware { background: linear-gradient(135deg, #e67e22, #d35400); }
+        .dos { background: linear-gradient(135deg, #34495e, #2c3e50); }
+        .ddos { background: linear-gradient(135deg, #95a5a6, #7f8c8d); }
+        .sql { background: linear-gradient(135deg, #16a085, #138d75); }
+        .brute { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .mitm { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .zero { background: linear-gradient(135deg, #2c3e50, #34495e); }
+        .keylog { background: linear-gradient(135deg, #27ae60, #229954); }
+        .xss { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .social { background: linear-gradient(135deg, #3498db, #2980b9); }
+
+        .attack-name {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            color: var(--primary-teal);
+        }
+
+        .severity-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+        }
+
+        .severity-high { background: rgba(231, 76, 60, 0.2); color: #c0392b; }
+        .severity-critical { background: rgba(155, 89, 182, 0.2); color: #8e44ad; }
+        .severity-medium { background: rgba(243, 156, 18, 0.2); color: #e67e22; }
+        
+        h1 {
+            color: var(--primary-teal);
+            text-align: center;
+            margin: 30px 0 20px 0;
+            font-size: 3em;
+            font-weight: 700;
+            text-shadow: 0 4px 8px rgba(0, 89, 84, 0.3);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        h2 {
+            color: var(--accent-coral);
+            text-align: center;
+            margin: 15px 0 40px 0;
+            font-size: 2.2em;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(255, 107, 53, 0.3);
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-accent);
+            border-radius: 2px;
+        }
+    </style>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a class="navbar-brand" href="index.html">Inicio</a>
+            
+            <button class="navbar-toggle" onclick="toggleMobileMenu()">☰</button>
+            
+            <ul class="navbar-nav" id="navbarNav">
+                <li class="nav-item">
+                    <a class="nav-link" href="unidad1.html">UNIDAD 1 Ciberseguridad</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="conceptos.html">Conceptos</a>
+                        <a class="dropdown-item" href="ataques.html">Ataques</a>
+                        <a class="dropdown-item" href="proteccion.html">Protección</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="unidad2.html">UNIDAD 2</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="./tomas04.html">Conceptos</a>
+                        <a class="dropdown-item" href="./tomas05.html">Ataques</a>
+                        <a class="dropdown-item" href="./tomas06.html">Protección</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="unidad3.html">UNIDAD 3</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="./tomas07.html">Conceptos</a>
+                        <a class="dropdown-item" href="./tomas08.html">Ataques</a>
+                        <a class="dropdown-item" href="./tomas09.html">Protección</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <h1>Ciberseguridad 02</h1>
+        <h2>Ataques de Ciberseguridad</h2>
+
+        <table class="tabla-ciber">
+            <thead>
+                <tr>
+                    <th>Ataque</th>
+                    <th>Descripción</th>
+                    <th>Impacto</th>
+                    <th>Ejemplo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="attack-name">
+                            <div class="icon-attack phishing">📧</div>
+                            Phishing
+                        </div>
+                        <div class="severity-badge severity-high">Alto Riesgo</div>
+                    </td>
+                    <td>Engaña al usuario para robar las credenciales mediante correos falsos.</td>
+                    <td>Robo de identidad, pérdida de datos.</td>
+                    <td>Correo falso de un banco solicitando datos.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="attack-name">
+                            <div class="icon-attack malware">🦠</div>
+                            Malware
+                        </div>
+                        <div class="severity-badge severity-critical">Crítico</div>
+                    </td>
+                    <td>Software malicioso que daña o toma el control del sistema.</td>
+                    <td>Pérdida de datos, control del sistema.</td>
+                    <td>Un troyano oculto en un archivo adjunto.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="attack-name">
+                            <div class="icon-attack ransomware">🔒</div>
+                            Ransomware
+                        </div>
+                        <div class="severity-badge severity-critical">Crítico</div>
+                    </td>
+                    <td>Secuestra datos y exige pago para liberarlos.</td>
+                    <td>Secuestro de datos, pérdidas económicas.</td>
+                    <td>WannaCry afectó a miles de sistemas en 2017.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="attack-name">
+                            <div class="icon-attack dos">⚡</div>
+                            Denegación de servicio (DoS)
+                        </div>
+                        <div class="severity-badge severity-high">Alto Riesgo</div>
+                    </td>
+                    <td>Inunda un servidor con tráfico para hacerlo inaccesible.</td>
+                    <td>Interrupción de servicios.</td>
+                    <td>Ataque a un sitio web de gobierno.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="attack-name">
+                            <div class="icon-attack ddos">💥</div>
+                            DDoS
+                        </div>
+                        <div class="severity-badge severity-critical">Crítico</div>
+                    </td>
+                    <td>Ataque DoS desde múltiples dispositivos (botnet).</td>
+                    <td>Caída masiva de servicios.</td>
+                    <td>Ataque a Dyn que afectó a Twitter y Netflix.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="attack-name">
+                            <div class="icon-attack sql">💉</div>
+                            Inyección SQL
+                        </div>
+                        <div class="severity-badge severity-high">Alto Riesgo</div>
+                    </td>
+                    <td>Inserta código SQL malicioso para acceder a bases de datos.</td>
+                    <td>Acceso a datos confidenciales.</td>
+                    <td>Obtener contraseñas desde un formulario vulnerable.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="attack-name">
+                            <div class="icon-attack brute">🔨</div>
+                            Fuerza bruta
+                        </div>
+                        <div class="severity-badge severity-medium">Medio Riesgo</div>
+                    </td>
+                    <td>Adivina contraseñas por prueba y error.</td>
+                    <td>Acceso no autorizado.</td>
+                    <td>Script probando miles de contraseñas.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="attack-name">
+                            <div class="icon-attack mitm">🕵️</div>
+                            Man-in-the-Middle (MitM)
+                        </div>
+                        <div class="severity-badge severity-high">Alto Riesgo</div>
+                    </td>
+                    <td>Intercepta la comunicación entre dos partes.</td>
+                    <td>Robo o alteración de información.</td>
+                    <td>Capturar datos en una red Wi-Fi pública.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="attack-name">
+                            <div class="icon-attack zero">🎯</div>
+                            Zero-Day
+                        </div>
+                        <div class="severity-badge severity-critical">Crítico</div>
+                    </td>
+                    <td>Aprovecha vulnerabilidades aún no conocidas.</td>
+                    <td>Compromiso del sistema sin solución inmediata.</td>
+                    <td>Ataque antes de que salga un parche de seguridad.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="attack-name">
+                            <div class="icon-attack keylog">⌨️</div>
+                            Keylogging
+                        </div>
+                        <div class="severity-badge severity-high">Alto Riesgo</div>
+                    </td>
+                    <td>Registra pulsaciones del teclado.</td>
+                    <td>Robo de contraseñas y datos personales.</td>
+                    <td>Software oculto que graba todo lo que escribes.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="attack-name">
+                            <div class="icon-attack xss">💻</div>
+                            XSS (Cross-Site Scripting)
+                        </div>
+                        <div class="severity-badge severity-medium">Medio Riesgo</div>
+                    </td>
+                    <td>Inyecta scripts maliciosos en páginas web.</td>
+                    <td>Robo de cookies o redirecciones maliciosas.</td>
+                    <td>Script en un comentario que roba la sesión.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="attack-name">
+                            <div class="icon-attack social">👥</div>
+                            Ingeniería social
+                        </div>
+                        <div class="severity-badge severity-high">Alto Riesgo</div>
+                    </td>
+                    <td>Manipula a personas para obtener acceso o datos.</td>
+                    <td>Filtración de información, acceso físico.</td>
+                    <td>Alguien se hace pasar por técnico de soporte.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const navbarNav = document.getElementById('navbarNav');
+            navbarNav.classList.toggle('active');
+        }
+
+        // Cerrar menú móvil al hacer clic en un enlace
+        document.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarNav = document.getElementById('navbarNav');
+                navbarNav.classList.remove('active');
+            });
+        });
+
+        // Animación de entrada para las filas de la tabla
+        document.addEventListener('DOMContentLoaded', function() {
+            const rows = document.querySelectorAll('.tabla-ciber tbody tr');
+            rows.forEach((row, index) => {
+                row.style.opacity = '0';
+                row.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    row.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    row.style.opacity = '1';
+                    row.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

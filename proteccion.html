@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>José Antonio Hernandez Velazquez - Protección</title>
+</head>
+
+<body>
+    <style>
+        :root{
+            --primary-teal: #005954;
+            --secondary-teal: #00736e;
+            --light-teal: #4d9d94;
+            --accent-coral: #ff6b35;
+            --neutral-light: #f8f9fa;
+            --neutral-dark: #2c3e50;
+            --gradient-primary: linear-gradient(135deg, #005954, #00736e);
+            --gradient-accent: linear-gradient(135deg, #ff6b35, #ff8c42);
+            --protection-green: #27ae60;
+            --protection-blue: #3498db;
+            --protection-purple: #9b59b6;
+        }
+        
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: var(--neutral-dark);
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        /* Estilos mejorados para la barra de navegación */
+        .navbar {
+            background: var(--gradient-primary) !important;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 4px 20px rgba(0, 89, 84, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .navbar-brand {
+            color: var(--neutral-light) !important;
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .navbar-brand:hover {
+            color: var(--accent-coral) !important;
+            transform: scale(1.05);
+        }
+
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 30px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--neutral-light) !important;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 16px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .nav-link:hover {
+            background: var(--gradient-accent);
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Menú dropdown mejorado */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(145deg, white, #f8f9fa);
+            min-width: 220px;
+            box-shadow: 0 15px 35px rgba(0, 89, 84, 0.15);
+            border-radius: 12px;
+            padding: 15px 0;
+            z-index: 1001;
+            border: 1px solid rgba(0, 89, 84, 0.1);
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-item {
+            color: var(--neutral-dark) !important;
+            padding: 12px 25px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin: 2px 10px;
+            font-weight: 500;
+        }
+
+        .dropdown-item:hover {
+            background: var(--gradient-primary);
+            color: white !important;
+            transform: translateX(10px);
+            box-shadow: 0 4px 15px rgba(0, 89, 84, 0.3);
+        }
+
+        /* Responsive navbar */
+        .navbar-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--neutral-light);
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggle:hover {
+            color: var(--accent-coral);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .navbar-nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--gradient-primary);
+                flex-direction: column;
+                padding: 20px;
+                gap: 10px;
+                border-radius: 0 0 16px 16px;
+            }
+
+            .navbar-nav.active {
+                display: flex;
+            }
+
+            .navbar-toggle {
+                display: block;
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: block;
+                background: rgba(255, 255, 255, 0.1);
+                margin-left: 20px;
+                margin-top: 10px;
+                backdrop-filter: blur(10px);
+            }
+
+            .tabla-ciber {
+                width: 95%;
+                font-size: 14px;
+            }
+
+            .tabla-ciber th,
+            .tabla-ciber td {
+                padding: 12px 8px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            h2 {
+                font-size: 1.8em;
+            }
+        }
+
+        /* Resto de estilos originales con ajustes */
+        .content-wrapper {
+            margin-top: 120px;
+            padding: 20px;
+        }
+
+        .tabla-ciber{
+            width: 90%;
+            margin: 40px auto;
+            border-collapse: collapse;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-shadow: 0 20px 60px rgba(0, 89, 84, 0.15);
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 89, 84, 0.1);
+        }
+        
+        .tabla-ciber thead{
+            background: var(--gradient-primary);
+            color: white;
+        }
+        
+        .tabla-ciber th,
+        .tabla-ciber td {
+            padding: 18px 22px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 89, 84, 0.1);
+            vertical-align: top;
+        }
+        
+        .tabla-ciber th {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-size: 14px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .tabla-ciber tr:nth-child(even) {
+            background-color: rgba(39, 174, 96, 0.06);
+        }
+        
+        .tabla-ciber tr:nth-child(odd) {
+            background-color: white;
+        }
+        
+        .tabla-ciber tbody tr {
+            color: var(--neutral-dark);
+            transition: all 0.3s ease;
+        }
+        
+        .tabla-ciber tbody tr:hover {
+            background: linear-gradient(135deg, rgba(39, 174, 96, 0.1), rgba(46, 204, 113, 0.15));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(39, 174, 96, 0.15);
+            cursor: pointer;
+        }
+
+        .icon-protection {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            margin-right: 10px;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .antivirus { background: linear-gradient(135deg, #27ae60, #2ecc71); }
+        .firewall { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+        .password { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .backup { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .update { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .vpn { background: linear-gradient(135deg, #34495e, #2c3e50); }
+        .auth { background: linear-gradient(135deg, #16a085, #138d75); }
+        .encrypt { background: linear-gradient(135deg, #e67e22, #d35400); }
+        .training { background: linear-gradient(135deg, #95a5a6, #7f8c8d); }
+        .monitor { background: linear-gradient(135deg, #1abc9c, #16a085); }
+        .access { background: linear-gradient(135deg, #c0392b, #a93226); }
+        .incident { background: linear-gradient(135deg, #8e44ad, #7d3c98); }
+
+        .protection-name {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            color: var(--protection-green);
+        }
+
+        .effectiveness-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+        }
+
+        .effectiveness-high { background: rgba(39, 174, 96, 0.2); color: #27ae60; }
+        .effectiveness-essential { background: rgba(52, 152, 219, 0.2); color: #2980b9; }
+        .effectiveness-critical { background: rgba(155, 89, 182, 0.2); color: #8e44ad; }
+        
+        h1 {
+            color: var(--primary-teal);
+            text-align: center;
+            margin: 30px 0 20px 0;
+            font-size: 3em;
+            font-weight: 700;
+            text-shadow: 0 4px 8px rgba(0, 89, 84, 0.3);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        h2 {
+            color: var(--protection-green);
+            text-align: center;
+            margin: 15px 0 40px 0;
+            font-size: 2.2em;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(39, 174, 96, 0.3);
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            border-radius: 2px;
+        }
+
+        .protection-tip {
+            background: linear-gradient(135deg, rgba(39, 174, 96, 0.1), rgba(46, 204, 113, 0.05));
+            border-left: 4px solid var(--protection-green);
+            padding: 15px;
+            margin: 20px auto;
+            border-radius: 8px;
+            max-width: 90%;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.1);
+        }
+
+        .protection-tip h3 {
+            color: var(--protection-green);
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+    </style>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a class="navbar-brand" href="index.html">Inicio</a>
+            
+            <button class="navbar-toggle" onclick="toggleMobileMenu()">☰</button>
+            
+            <ul class="navbar-nav" id="navbarNav">
+                <li class="nav-item">
+                    <a class="nav-link" href="unidad1.html">UNIDAD 1 Ciberseguridad</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="conceptos.html">Conceptos</a>
+                        <a class="dropdown-item" href="ataques.html">Ataques</a>
+                        <a class="dropdown-item" href="proteccion.html">Protección</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="unidad2.html">UNIDAD 2</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="./tomas04.html">Conceptos</a>
+                        <a class="dropdown-item" href="./tomas05.html">Ataques</a>
+                        <a class="dropdown-item" href="./tomas06.html">Protección</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="unidad3.html">UNIDAD 3</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="./tomas07.html">Conceptos</a>
+                        <a class="dropdown-item" href="./tomas08.html">Ataques</a>
+                        <a class="dropdown-item" href="./tomas09.html">Protección</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <h1>Ciberseguridad 03</h1>
+        <h2>Medidas de Protección y Prevención</h2>
+
+        <div class="protection-tip">
+            <h3>💡 Consejo de Seguridad</h3>
+            <p>Las acciones de protección incluyen el uso de programas como antivirus y firewalls, así como seguir buenas prácticas, como crear contraseñas fuertes y ser cauteloso con los correos electrónicos sospechosos.</p>
+        </div>
+
+        <table class="tabla-ciber">
+            <thead>
+                <tr>
+                    <th>Medida de Protección</th>
+                    <th>Descripción</th>
+                    <th>Función Principal</th>
+                    <th>Beneficio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="protection-name">
+                            <div class="icon-protection antivirus">🛡️</div>
+                            Software Antivirus
+                        </div>
+                        <div class="effectiveness-badge effectiveness-essential">Esencial</div>
+                    </td>
+                    <td>Detecta, bloquea y elimina software malicioso del sistema.</td>
+                    <td>Escaneo en tiempo real y análisis de amenazas.</td>
+                    <td>Previene infecciones por malware, virus y troyanos.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="protection-name">
+                            <div class="icon-protection firewall">🔥</div>
+                            Firewall
+                        </div>
+                        <div class="effectiveness-badge effectiveness-critical">Crítica</div>
+                    </td>
+                    <td>Controla el tráfico de red entrante y saliente.</td>
+                    <td>Filtra conexiones no autorizadas.</td>
+                    <td>Bloquea accesos no deseados y ataques de red.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="protection-name">
+                            <div class="icon-protection password">🔐</div>
+                            Contraseñas Seguras
+                        </div>
+                        <div class="effectiveness-badge effectiveness-high">Alta Eficacia</div>
+                    </td>
+                    <td>Combinaciones complejas de caracteres únicos para cada cuenta.</td>
+                    <td>Autenticación de primer nivel de seguridad.</td>
+                    <td>Dificulta los ataques de fuerza bruta y diccionario.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="protection-name">
+                            <div class="icon-protection backup">💾</div>
+                            Copias de Seguridad
+                        </div>
+                        <div class="effectiveness-badge effectiveness-critical">Crítica</div>
+                    </td>
+                    <td>Almacenamiento redundante de datos importantes.</td>
+                    <td>Recuperación de información tras incidentes.</td>
+                    <td>Protección contra ransomware y pérdida de datos.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="protection-name">
+                            <div class="icon-protection update">🔄</div>
+                            Actualizaciones
+                        </div>
+                        <div class="effectiveness-badge effectiveness-essential">Esencial</div>
+                    </td>
+                    <td>Instalación automática de parches de seguridad.</td>
+                    <td>Cierra vulnerabilidades conocidas del sistema.</td>
+                    <td>Previene ataques que explotan fallos de seguridad.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="protection-name">
+                            <div class="icon-protection vpn">🌐</div>
+                            Red Privada Virtual (VPN)
+                        </div>
+                        <div class="effectiveness-badge effectiveness-high">Alta Eficacia</div>
+                    </td>
+                    <td>Cifra la conexión a internet y oculta la IP real.</td>
+                    <td>Navegación anónima y segura.</td>
+                    <td>Protege contra espionaje en redes públicas.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="protection-name">
+                            <div class="icon-protection auth">🗝️</div>
+                            Autenticación de Dos Factores
+                        </div>
+                        <div class="effectiveness-badge effectiveness-critical">Crítica</div>
+                    </td>
+                    <td>Verificación adicional mediante SMS, app o token.</td>
+                    <td>Doble capa de autenticación de identidad.</td>
+                    <td>Previene accesos no autorizados aunque roben la contraseña.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="protection-name">
+                            <div class="icon-protection encrypt">🔒</div>
+                            Cifrado de Datos
+                        </div>
+                        <div class="effectiveness-badge effectiveness-high">Alta Eficacia</div>
+                    </td>
+                    <td>Codifica la información para hacerla ilegible sin clave.</td>
+                    <td>Protege datos sensibles durante almacenamiento y transmisión.</td>
+                    <td>Información inútil para atacantes sin la clave de descifrado.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="protection-name">
+                            <div class="icon-protection training">👨‍🏫</div>
+                            Capacitación de Usuarios
+                        </div>
+                        <div class="effectiveness-badge effectiveness-essential">Esencial</div>
+                    </td>
+                    <td>Educación sobre amenazas y buenas prácticas de seguridad.</td>
+                    <td>Desarrolla conciencia sobre ciberseguridad.</td>
+                    <td>Reduce errores humanos y mejora la detección de amenazas.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="protection-name">
+                            <div class="icon-protection monitor">📊</div>
+                            Monitoreo de Seguridad
+                        </div>
+                        <div class="effectiveness-badge effectiveness-high">Alta Eficacia</div>
+                    </td>
+                    <td>Supervisión continua de actividad sospechosa en sistemas.</td>
+                    <td>Detección temprana de amenazas y anomalías.</td>
+                    <td>Respuesta rápida ante incidentes de seguridad.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="protection-name">
+                            <div class="icon-protection access">🚪</div>
+                            Control de Acceso
+                        </div>
+                        <div class="effectiveness-badge effectiveness-critical">Crítica</div>
+                    </td>
+                    <td>Limita el acceso a información según roles y necesidades.</td>
+                    <td>Principio de menor privilegio aplicado.</td>
+                    <td>Reduce la superficie de ataque y protege datos críticos.</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="protection-name">
+                            <div class="icon-protection incident">🚨</div>
+                            Plan de Respuesta a Incidentes
+                        </div>
+                        <div class="effectiveness-badge effectiveness-essential">Esencial</div>
+                    </td>
+                    <td>Protocolo definido para actuar ante brechas de seguridad.</td>
+                    <td>Respuesta organizada y eficiente ante ataques.</td>
+                    <td>Minimiza el impacto y acelera la recuperación.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="protection-tip">
+            <h3>🔐 Recomendación Importante</h3>
+            <p>Limitar el acceso a la información es una de las prácticas más relevantes para proteger los datos de tu organización. Implementa controles de acceso basados en roles y aplica el principio de menor privilegio.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const navbarNav = document.getElementById('navbarNav');
+            navbarNav.classList.toggle('active');
+        }
+
+        // Cerrar menú móvil al hacer clic en un enlace
+        document.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarNav = document.getElementById('navbarNav');
+                navbarNav.classList.remove('active');
+            });
+        });
+
+        // Animación de entrada para las filas de la tabla
+        document.addEventListener('DOMContentLoaded', function() {
+            const rows = document.querySelectorAll('.tabla-ciber tbody tr');
+            const tips = document.querySelectorAll('.protection-tip');
+            
+            // Animar tips primero
+            tips.forEach((tip, index) => {
+                tip.style.opacity = '0';
+                tip.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    tip.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    tip.style.opacity = '1';
+                    tip.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+
+            // Luego animar filas de la tabla
+            rows.forEach((row, index) => {
+                row.style.opacity = '0';
+                row.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    row.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    row.style.opacity = '1';
+                    row.style.transform = 'translateY(0)';
+                }, 400 + (index * 100));
+            });
+        });
+
+        // Efecto de partículas de seguridad en hover
+        document.querySelectorAll('.tabla-ciber tbody tr').forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.background = 'linear-gradient(135deg, rgba(39, 174, 96, 0.1), rgba(46, 204, 113, 0.15))';
+            });
+            
+            row.addEventListener('mouseleave', function() {
+                const isEven = Array.from(this.parentNode.children).indexOf(this) % 2 === 0;
+                this.style.background = isEven ? 'rgba(39, 174, 96, 0.06)' : 'white';
+            });
+        });
+    </script>
+</body>
+</html>
