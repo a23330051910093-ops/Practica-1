@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/schnoerkel-caps" rel="stylesheet"/>
+    <title>Calculadora</title>
+</head>
+<body>
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/i-ilmu-script');
+        @import url('https://fonts.cdnfonts.com/css/kingsmen');
+        
+        :root{
+            --salmon: #f08e7aff;
+            --ghost-white: #f6f6fdff;
+            --alice-blue: #d7e6edff;
+            --tiffany-blue: #7fdcc8ff;
+            --yinmn-blue: #324d71ff;
+            --primary-teal: #005954;
+            --secondary-teal: #00736e;
+            --light-teal: #4d9d94;
+            --accent-coral: #ff6b35;
+            --neutral-light: #f8f9fa;
+            --neutral-dark: #2c3e50;
+            --gradient-primary: linear-gradient(135deg, #005954, #00736e);
+            --gradient-accent: linear-gradient(135deg, #ff6b35, #ff8c42);
+        }
+        
+        body{
+            background-color: var(--ghost-white);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        /* Estilos del navbar del primer código */
+        .navbar {
+            background: var(--gradient-primary) !important;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 4px 20px rgba(0, 89, 84, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .navbar-brand {
+            color: var(--neutral-light) !important;
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .navbar-brand:hover {
+            color: var(--accent-coral) !important;
+            transform: scale(1.05);
+        }
+
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 30px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--neutral-light) !important;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 16px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .nav-link:hover {
+            background: var(--gradient-accent);
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Menú dropdown mejorado */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: linear-gradient(145deg, white, #f8f9fa);
+            min-width: 220px;
+            box-shadow: 0 15px 35px rgba(0, 89, 84, 0.15);
+            border-radius: 12px;
+            padding: 15px 0;
+            z-index: 1001;
+            border: 1px solid rgba(0, 89, 84, 0.1);
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-item {
+            color: var(--neutral-dark) !important;
+            padding: 12px 25px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin: 2px 10px;
+            font-weight: 500;
+        }
+
+        .dropdown-item:hover {
+            background: var(--gradient-primary);
+            color: white !important;
+            transform: translateX(10px);
+            box-shadow: 0 4px 15px rgba(0, 89, 84, 0.3);
+        }
+
+        /* Responsive navbar */
+        .navbar-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--neutral-light);
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggle:hover {
+            color: var(--accent-coral);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .navbar-nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-teal);
+                flex-direction: column;
+                padding: 20px;
+                gap: 10px;
+            }
+
+            .navbar-nav.active {
+                display: flex;
+            }
+
+            .navbar-toggle {
+                display: block;
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: block;
+                background-color: rgba(0, 115, 110, 0.9);
+                margin-left: 20px;
+                margin-top: 10px;
+            }
+        }
+
+        /* Estilos del contenido original */
+        .content-wrapper {
+            margin-top: 120px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .jumbotron {
+            background-color: var(--ghost-white);
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .tachyon-text h1 {
+            color: var(--primary-teal);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .tachyon-text h3 {
+            color: var(--yinmn-blue);
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .tachyon-text p {
+            color: var(--neutral-dark);
+            font-size: 1.2em;
+        }
+
+        .calc {
+            background-color: #e0e0e0;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #999;
+        }
+
+        #ans {
+            width: 100%;
+            height: 50px;
+            font-size: 24px;
+            text-align: right;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #666;
+            border-radius: 5px;
+            background-color: white;
+            color: black;
+        }
+
+        .btn input[type="button"] {
+            width: 60px;
+            height: 60px;
+            margin: 3px;
+            font-size: 18px;
+            border: 1px solid #666;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            color: black;
+            cursor: pointer;
+        }
+
+        .btn input[type="button"]:hover {
+            background-color: #d0d0d0;
+        }
+
+        .btn input[type="button"]:active {
+            background-color: #c0c0c0;
+        }
+    </style>
+
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a class="navbar-brand" href="index.html">Inicio</a>
+            
+            <button class="navbar-toggle" onclick="toggleMobileMenu()">☰</button>
+            
+            <ul class="navbar-nav" id="navbarNav">
+                <li class="nav-item">
+                    <a class="nav-link">UNIDAD 1 Ciberseguridad</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="conceptos.html">Conceptos</a>
+                        <a class="dropdown-item" href="ataques.html">Ataques</a>
+                        <a class="dropdown-item" href="proteccion.html">Protección</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">UNIDAD 2</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="calculadora.html">Calculadora</a>
+                        <a class="dropdown-item" href="./tomas05.html">........</a>
+                        <a class="dropdown-item" href="./tomas06.html">........</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">UNIDAD 3</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="./tomas07.html">........</a>
+                        <a class="dropdown-item" href="./tomas08.html">........</a>
+                        <a class="dropdown-item" href="./tomas09.html">........</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <div class="jumbotron">
+            <div class="tachyon-text">
+                <h1>Jose Antonio Herenadez Velazquez</h1>
+                <h3>Programacion 5A</h3>
+                <p>Construye Paginas Web</p>
+            </div>
+        </div>
+
+        <div class="calc">
+            <input type="text" id="ans">
+            <div class="btn">
+                <input type="button" value="C" onclick="Clear()">
+                <input type="button" value="%" onclick="Solve('%')">
+                <input type="button" value="←" onclick="Solve('←')">
+                <input type="button" value="/" onclick="Solve('/')">
+                <br>
+
+                <input type="button" value="7" onclick="Solve('7')">
+                <input type="button" value="8" onclick="Solve('8')">
+                <input type="button" value="9" onclick="Solve('9')">
+                <input type="button" value="x" onclick="Solve('x')">
+                <br>
+
+                <input type="button" value="4" onclick="Solve('4')">
+                <input type="button" value="5" onclick="Solve('5')">
+                <input type="button" value="6" onclick="Solve('6')">
+                <input type="button" value="-" onclick="Solve('-')">
+                <br>
+
+                <input type="button" value="1" onclick="Solve('1')">
+                <input type="button" value="2" onclick="Solve('2')">
+                <input type="button" value="3" onclick="Solve('3')">
+                <input type="button" value="+" onclick="Solve('+')">
+                <br>
+
+                <input type="button" value="00" onclick="Solve('00')">
+                <input type="button" value="0" onclick="Solve('0')">
+                <input type="button" value="." onclick="Solve('.')">
+                <input type="button" value="=" onclick="Solve('=')">
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const navbarNav = document.getElementById('navbarNav');
+            navbarNav.classList.toggle('active');
+        }
+
+        // Cerrar menú móvil al hacer clic en un enlace
+        document.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarNav = document.getElementById('navbarNav');
+                navbarNav.classList.remove('active');
+            });
+        });
+
+        // Funciones de la calculadora
+        function Solve(val) {
+            var v = document.getElementById('ans');
+            if (val == '=') {
+                var expression = v.value;
+                expression = expression.replace(/x/g, '*');
+                v.value = eval(expression);
+            } else if (val == '←') {
+                v.value = v.value.slice(0, -1);
+            } else if (val == '%') {
+                v.value = eval(v.value) / 100;
+            } else {
+                v.value += val;
+            }
+        }
+
+        function Clear() {
+            var v = document.getElementById('ans');
+            v.value = '';
+        }
+    </script>
+</body>
+</html>
