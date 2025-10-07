@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1uH2ulI4uhcY7KqyNJwAW"
+    crossorigin="anonymous">
+    <title>Jose Antonio - Perfil</title>
+</head>
+<body>
+   <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body{
+            background: linear-gradient(135deg, #F78801 0%, #ff9a2e 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        h1{
+            font-family: Arial, sans-serif;
+            font-size: 48px;
+            text-align: center;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+        
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+        
+        table{
+            background-color: white;
+            width: 100%;
+            margin: 0 auto 30px;
+            border-collapse: collapse;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        td{
+            padding: 20px;
+        }
+        
+        .profile-section {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%);
+        }
+        
+        .profile-image-cell {
+            text-align: center;
+            vertical-align: middle;
+            background-color: #fff5e6;
+        }
+        
+        img{
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 8px solid #4e064e;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        img:hover {
+            transform: scale(1.05);
+        }
+        
+        .profile-info p {
+            color: #333;
+            font-size: 16px;
+            margin: 12px 0;
+            line-height: 1.6;
+        }
+        
+        .profile-info b {
+            color: #F78801;
+            font-weight: 600;
+        }
+        
+        .profile-title {
+            background: linear-gradient(135deg, #F78801 0%, #ff9a2e 100%);
+            color: white;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%);
+            color: #333;
+            padding: 15px 20px;
+            font-weight: bold;
+            font-size: 16px;
+            border-left: 5px solid #F78801;
+        }
+        
+        .section-header i {
+            margin-right: 8px;
+            color: #F78801;
+        }
+        
+        .info-row {
+            display: table-row;
+        }
+        
+        .info-label {
+            background-color: #fff9f0;
+            color: #666;
+            font-weight: 500;
+            width: 40%;
+            padding: 15px 20px;
+            border-bottom: 1px solid #ffe6cc;
+        }
+        
+        .info-value {
+            background-color: white;
+            color: #333;
+            padding: 15px 20px;
+            border-bottom: 1px solid #ffe6cc;
+            font-weight: 500;
+        }
+        
+        .info-row:last-child .info-label,
+        .info-row:last-child .info-value {
+            border-bottom: none;
+        }
+        
+        hr{
+            border: none;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #F78801, transparent);
+            margin: 40px auto;
+            max-width: 950px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+            
+            img {
+                width: 200px;
+                height: 200px;
+            }
+            
+            table {
+                font-size: 14px;
+            }
+        }
+   </style>
+   
+   <div class="container">
+       <h1>Los de 4B</h1>
+       
+       <table>
+       <tr class="profile-section">
+            <td class="profile-image-cell">
+                <img src="perfil.jpg" alt="Jose Antonio">
+            </td>
+            <td class="profile-info">
+                <p>👤 Género: <b>Masculino</b></p>
+                <p>🧬 Raza: <b>Mutante</b></p>
+                <p>🎂 Nacimiento: <b>22 de Agosto 2008</b></p>
+                <p>🏠 Calle: <b>Calle Morelos 567</b></p>
+                <p>🌆 Ciudad: <b>Reynosa, Tamaulipas</b></p>
+                <p>📞 Teléfono: <b>899-234-5678</b></p>
+                <p>📱 Celular: <b>899-876-5432</b></p>
+            </td>
+       </tr>
+       <tr>
+        <td colspan="2" class="profile-title">
+            GAMBIT DE LOS X-MEN - FAN DE MARVEL
+        </td>
+       </tr>
+       </table>
+       
+       <hr>
+       
+       <table>
+        <tr>
+            <td colspan="2" class="section-header">
+                <i class="fa fa-user" aria-hidden="true"></i>INFORMACIÓN BÁSICA
+                <i class="fa fa-question-circle" aria-hidden="true" style="float: right;"></i>
+            </td>
+        </tr>
+        <tr class="info-row">
+            <td class="info-label">📧 Email</td>
+            <td class="info-value">jose.antonio@email.com</td>
+        </tr>
+        <tr class="info-row">
+            <td class="info-label">📏 Altura</td>
+            <td class="info-value">1.68 m</td>
+        </tr>
+        <tr class="info-row">
+            <td class="info-label">⚖️ Peso</td>
+            <td class="info-value">62 kg</td>
+        </tr>
+        <tr class="info-row">
+            <td class="info-label">💇 Color de pelo</td>
+            <td class="info-value">Negro</td>
+        </tr>
+        <tr class="info-row">
+            <td class="info-label">🩸 Tipo de sangre</td>
+            <td class="info-value">A+</td>
+        </tr>
+        <tr class="info-row">
+            <td class="info-label">♌ Signo Zodiacal</td>
+            <td class="info-value">Leo</td>
+        </tr>
+        <tr class="info-row">
+            <td class="info-label">👨‍👩‍👦 Apellido Materno</td>
+            <td class="info-value">Hernandez</td>
+        </tr>
+        <tr class="info-row">
+            <td class="info-label">💍 Estado Civil</td>
+            <td class="info-value">Soltero</td>
+        </tr>
+        <tr class="info-row">
+            <td class="info-label">🎓 Educación</td>
+            <td class="info-value">Preparatoria - 4to Semestre</td>
+        </tr>
+        <tr class="info-row">
+            <td class="info-label">🏥 Historial de Enfermedades</td>
+            <td class="info-value">Alergias estacionales</td>
+        </tr>
+        
+        <tr>
+            <td colspan="2" class="section-header">
+                <i class="fa fa-briefcase" aria-hidden="true"></i>INFORMACIÓN DE EMPLEADO
+                <i class="fa fa-question-circle" aria-hidden="true" style="float: right;"></i>
+            </td>
+        </tr>
+        <tr class="info-row">
+            <td class="info-label">💼 Estado de Empleado</td>
+            <td class="info-value">Tiempo completo (verano)</td>
+        </tr>
+        <tr class="info-row">
+            <td class="info-label">💰 Salario Mensual</td>
+            <td class="info-value">$4,200 MXN</td>
+        </tr>
+        <tr class="info-row">
+            <td class="info-label">👔 Ocupación</td>
+            <td class="info-value">Mesero</td>
+        </tr>
+        <tr class="info-row">
+            <td class="info-label">🏢 Nombre de la Empresa</td>
+            <td class="info-value">Restaurante El Buen Sabor</td>
+        </tr>
+        <tr class="info-row">
+            <td class="info-label">📊 Tamaño de la Empresa</td>
+            <td class="info-value">15 empleados</td>
+        </tr>
+        <tr class="info-row">
+            <td class="info-label">🏭 Industria</td>
+            <td class="info-value">Restaurantes</td>
+        </tr>
+       </table>
+   </div>
+
+</body>
+</html>
