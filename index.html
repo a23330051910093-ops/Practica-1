@@ -24,7 +24,7 @@
 
     <title>Jose Antonio Hernandez Velazquez </title>
   </head>
-  <body background="OIP.webp">
+  <body background="Portada02.jpg">
     <style>
         :root{
             --salmon: rgb(76, 180, 175);
@@ -101,12 +101,20 @@
         Practica 1
       </p>
       <p class="lead">
-        <a class="btn btn-primary btn-lg" href="#" role="button">Continuar</a>
+        <a class="btn btn-primary btn-lg" href="OIP.webp" role="button" onclick="abrirPerfil(); return false;">Continuar</a>
       </p>
     </div>
+
+    <script>
+      function abrirPerfil() {
+        // Abre perfil.html en una ventana emergente
+        // Parámetros: URL, nombre de ventana, características (tamaño y posición)
+        window.open(
+          'perfil.html',
+          'Perfil',
+          'width=1000,height=800,scrollbars=yes,resizable=yes,left=200,top=100'
+        );
+      }
+    </script>
   </body>
-
-
 </html>
-
-
