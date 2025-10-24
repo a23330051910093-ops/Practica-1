@@ -1,43 +1,149 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Búsqueda de Cartas - Yu-Gi-Oh! DB</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css" />
+    
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 
-    <link href="https://fonts.cdnfonts.com/css/schnoerkel-caps" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #000; 
+      color: #fff;
+    }
 
-    <title>Calculadora</title>
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
 
-    <style>
-        :root {
-            --oxford-blue: #0a2342;
-            --zomp: #2ca58d;
-            --cambridge-blue: #84bc9c;
-            --baby-powder: #fffdf7;
-            --cyclamen: #f46197;
-            --salmon: #fa8072;
-            --tiffany-blue: #0abab5;
-            --ghostwhite: #f8f8ff;
-        }
+    h1 {
+      text-align: center;
+      margin: 40px 0 20px;
+      font-size: 2.5rem;
+      color: #ffd700; 
+      text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: var(--baby-powder);
-            color: #333;
-            display: flex;
-            justify-content: center;
-            padding: 20px;
-            flex-direction: column;
-            align-items: center;
-        }
+    form {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 50px;
+    }
 
-        .navbar {
+    input[type="text"] {
+      font-size: 1.2rem;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      width: 50%;
+      background-color: #2c2c2c;
+      color: #fff;
+    }
+
+    input[type="submit"] {
+      font-size: 1.2rem;
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      margin-left: 10px;
+      cursor: pointer;
+      background-color: #ffd700; 
+      color: #000;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    
+    input[type="submit"]:hover {
+        background-color: #e6c200;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2); 
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      max-height: 350px; 
+      object-fit: contain;
+      border-bottom: 3px solid #ffd700;
+    }
+
+    .card-info {
+      padding: 15px;
+      flex-grow: 1;
+    }
+
+    .card-info h3 {
+      margin: 0 0 5px 0;
+      font-size: 1.3rem;
+      color: #ffd700;
+    }
+    
+    .type-line {
+      font-size: 0.9rem;
+      color: #bbb;
+      margin-bottom: 10px;
+    }
+    
+    .stats {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #aaa;
+      margin-top: 10px;
+      padding-top: 5px;
+      border-top: 1px dashed #333;
+    }
+
+    .stats .atk {
+      color: #ff4d4d; 
+    }
+    
+    .stats .def {
+      color: #66b3ff; 
+    }
+
+    .description {
+      font-size: 0.9rem;
+      color: #ccc;
+      margin-top: 10px;
+    }
+
+    .status-message {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-top: 50px;
+      color: #fff;
+    }
+       .navbar {
             width: 100%;
             margin-bottom: 20px;
         }
@@ -47,150 +153,137 @@
             padding: 30px;
             text-align: center;
         }
-
-        .calc {
-            background-color: var(--oxford-blue);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            text-align: center;
+        footer{
+          position: fixed;
+          bottom: 0;
+          left: 0; 
+          width: 100%;  
+          background-color: #222;
         }
-
-        #ans {
-            width: 100%;
-            height: 40px;
-            font-size: 1.5em;
-            text-align: right;
-            margin-bottom: 10px;
-            padding: 5px 10px;
-            border-radius: 5px;
-            border: none;
-        }
-
-        .btn input {
-            width: 22%;
-            height: 40px;
-            margin: 5px;
-            font-size: 1.2em;
-            border: none;
-            border-radius: 5px;
-            background-color: var(--cambridge-blue);
-            color: #000;
-            cursor: pointer;
-        }
-
-        .btn input:hover {
-            background-color: var(--zomp);
-        }
-    </style>
+    
+  </style>
 </head>
 <body>
-
-
-    <nav class="navbar navbar-default" style="background-color: var(--salmon);">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">Inicio</a>
-            </div>
-
-            <ul class="nav navbar-nav">
-            
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Unidad 1 <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="./tabla.html">Conceptos</a></li>
-                        <li><a href="./tabla2.html">Ataques</a></li>
-                        <li><a href="./index.html">Protección</a></li>
-                    </ul>
-                </li>
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Unidad 2 <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="./file4.html">Conceptos</a></li>
-                        <li><a href="./tabla2.html">Ataques</a></li>
-                        <li><a href="./index.html">Protección</a></li>
-                    </ul>
-                </li>
-
-           
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Unidad 3 <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="./tabla.html">Conceptos</a></li>
-                        <li><a href="./tabla2.html">Ataques</a></li>
-                        <li><a href="./index.html">Protección</a></li>
-                    </ul>
-                </li>
-            </ul>
+      <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">Inicio</a>
         </div>
+    
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Unidad 1 <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="ciberseguridad.html">Conceptos</a></li>
+              <li><a href="tabla.html">Ataques</a></li>
+              <li><a href="#">Protección</a></li> </ul>
+          </li>
+    
+          <li><a href="#">Unidad 2</a></li>
+          <li><a href="#">Unidad 3</a></li>
+          <li><a href="juan04.html">Calculadora</a></li>
+           <li><a href="juan05.html">Yu-Gi-Oh</a></li>
+          </ul>
+      </div>
     </nav>
+  <div class="container">
+    <h1>Yu-Gi-Oh! Deck Builder 🃏🐉</h1>
+    <form id="form">
+      <input type="text" id="search" placeholder="Busca una carta (ej: Dark Magician)" />
+      <input type="submit" value="Buscar" />
+    </form>
+    <section id="main" class="cards"></section>
+  </div>
+<footer>
+  <h1>Melendez Roman Juan Gerardo, Gonzalez Reyes Alejandro Uriel, Rangel Armendarez Victor Adrian, Hernandez Velazquez Jose Antonio, Lucas Martinez Alejandro Javier, Valadez Delgado Oscar</h1> 
+</footer>
+  <script>
+    const BASE_API_URL = 'https://db.ygoprodeck.com/api/v7/cardinfo.php';
+    
+    const main = document.getElementById('main');
+    const form = document.getElementById('form');
+    const search = document.getElementById('search');
 
-    <div class="jumbotron">
-        <h1>Juan Gerardo Meléndez Román</h1>
-        <h3>Programación 5A</h3>
-        <p>Construye Páginas Web</p>
-    </div>
+    main.innerHTML = '<p class="status-message">¡Es hora del duelo! Busca una carta por su nombre.</p>';
 
-    <div class="calc">
-        <input type="text" id="ans" readonly>
+    async function getCards(searchTerm) {
+      main.innerHTML = '<p class="status-message">Invocando cartas...</p>';
+      
+      const finalUrl = `${BASE_API_URL}?fname=${encodeURIComponent(searchTerm)}`;
 
-        <div class="btn">
-            <input type="button" value="C" onclick="Clear()">
-            <input type="button" value="%" onclick="Solve('%')">
-            <input type="button" value="←" onclick="Back()">
-            <input type="button" value="/" onclick="Solve('/')"><br>
+      try {
+        const res = await fetch(finalUrl);
+        if (!res.ok) {
+            throw new Error(`Error HTTP: ${res.status}`);
+        }
+        const data = await res.json();
+        
+        const cards = data.data; 
 
-            <input type="button" value="7" onclick="Solve('7')">
-            <input type="button" value="8" onclick="Solve('8')">
-            <input type="button" value="9" onclick="Solve('9')">
-            <input type="button" value="x" onclick="Solve('x')"><br>
+        if (!cards || cards.length === 0) {
+            main.innerHTML = '<p class="status-message" style="color: #dc3545;">No se encontraron cartas con ese nombre. ¡Asegúrate de escribirlo bien!</p>';
+        } else {
+            showCards(cards);
+        }
+      } catch (error) {
+        console.error('Error al obtener datos:', error);
+        main.innerHTML = `<p class="status-message" style="color: #dc3545;">Error al cargar los datos: ${error.message}. Asegúrate de que la API esté disponible.</p>`;
+      }
+    }
 
-            <input type="button" value="4" onclick="Solve('4')">
-            <input type="button" value="5" onclick="Solve('5')">
-            <input type="button" value="6" onclick="Solve('6')">
-            <input type="button" value="-" onclick="Solve('-')"><br>
+    function showCards(cards) {
+      main.innerHTML = '';
 
-            <input type="button" value="1" onclick="Solve('1')">
-            <input type="button" value="2" onclick="Solve('2')">
-            <input type="button" value="3" onclick="Solve('3')">
-            <input type="button" value="+" onclick="Solve('+')"><br>
+      cards.forEach(card => {
+        const { 
+            name, 
+            type, 
+            race, 
+            desc, 
+            atk, 
+            def, 
+            level, 
+            card_images 
+        } = card;
+        const imageUrl = (card_images && card_images[0] && card_images[0].image_url) 
+                         || 'https://via.placeholder.com/421x614?text=No+Card+Image'; 
+        
+        const typeInfo = `${race} / ${type}`;
 
-            <input type="button" value="00" onclick="Solve('00')">
-            <input type="button" value="0" onclick="Solve('0')">
-            <input type="button" value="." onclick="Solve('.')">
-            <input type="button" value="=" onclick="Result()">
-        </div>
-    </div>
+        const stats = (type.toLowerCase().includes('monster') || type.toLowerCase().includes('xyz'))
+            ? `<div class="stats">ATK/<span class="atk">${atk || '?'}</span> DEF/<span class="def">${def || '?'}</span> Nivel: ${level || '?'}</div>`
+            : '';
+        
+        const cardEl = document.createElement('div');
+        cardEl.classList.add('card');
 
-    <script type="text/javascript">
-        const Solve = (val) => {
-            const v = document.getElementById('ans');
-            if (val === 'x') {
-                v.value += '*';
-            } else {
-                v.value += val;
-            }
-        };
+        cardEl.innerHTML = `
+          <img src="${imageUrl}" alt="${name}">
+          <div class="card-info">
+            <h3>${name}</h3>
+            <p class="type-line">${typeInfo}</p>
+            ${stats}
+            <p class="description">${desc}</p>
+          </div>
+        `;
 
-        const Result = () => {
-            try {
-                const v1 = document.getElementById('ans').value;
-                const v2 = eval(v1);
-                document.getElementById('ans').value = v2;
-            } catch (e) {
-                alert("Operación inválida");
-            }
-        };
+        main.appendChild(cardEl);
+      });
+    }
 
-        const Clear = () => {
-            document.getElementById('ans').value = '';
-        };
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
 
-        const Back = () => {
-            const input = document.getElementById('ans');
-            input.value = input.value.slice(0, -1);
-        };
-    </script>
+      const searchTerm = search.value.trim();
+
+      if (searchTerm) {
+        getCards(searchTerm);
+        search.value = ''; 
+      } else {
+ 
+        main.innerHTML = '<p class="status-message">Por favor, introduce el nombre de una carta para empezar el duelo.</p>';
+      }
+    });
+  </script>
 </body>
 </html>
