@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <link href="https://fonts.cdnfonts.com/css/schnoerkel-caps" rel="stylesheet"/>
+
+    <title>Calculadora</title>
+
+    <style>
+        :root {
+            --oxford-blue: #0a2342;
+            --zomp: #2ca58d;
+            --cambridge-blue: #84bc9c;
+            --baby-powder: #fffdf7;
+            --cyclamen: #f46197;
+            --salmon: #fa8072;
+            --tiffany-blue: #0abab5;
+            --ghostwhite: #f8f8ff;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--baby-powder);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .navbar {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .jumbotron {
+            background-color: var(--ghostwhite);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .calc {
+            background-color: var(--oxford-blue);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        #ans {
+            width: 100%;
+            height: 40px;
+            font-size: 1.5em;
+            text-align: right;
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .btn input {
+            width: 22%;
+            height: 40px;
+            margin: 5px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--cambridge-blue);
+            color: #000;
+            cursor: pointer;
+        }
+
+        .btn input:hover {
+            background-color: var(--zomp);
+        }
+    </style>
+</head>
+<body>
+
+
+    <nav class="navbar navbar-default" style="background-color: var(--salmon);">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">Inicio</a>
+            </div>
+
+            <ul class="nav navbar-nav">
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Unidad 1 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="./tabla.html">Conceptos</a></li>
+                        <li><a href="./tabla2.html">Ataques</a></li>
+                        <li><a href="./index.html">Protección</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Unidad 2 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="./file4.html">Conceptos</a></li>
+                        <li><a href="./tabla2.html">Ataques</a></li>
+                        <li><a href="./index.html">Protección</a></li>
+                    </ul>
+                </li>
+
+           
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Unidad 3 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="./tabla.html">Conceptos</a></li>
+                        <li><a href="./tabla2.html">Ataques</a></li>
+                        <li><a href="./index.html">Protección</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="jumbotron">
+        <h1>Juan Gerardo Meléndez Román</h1>
+        <h3>Programación 5A</h3>
+        <p>Construye Páginas Web</p>
+    </div>
+
+    <div class="calc">
+        <input type="text" id="ans" readonly>
+
+        <div class="btn">
+            <input type="button" value="C" onclick="Clear()">
+            <input type="button" value="%" onclick="Solve('%')">
+            <input type="button" value="←" onclick="Back()">
+            <input type="button" value="/" onclick="Solve('/')"><br>
+
+            <input type="button" value="7" onclick="Solve('7')">
+            <input type="button" value="8" onclick="Solve('8')">
+            <input type="button" value="9" onclick="Solve('9')">
+            <input type="button" value="x" onclick="Solve('x')"><br>
+
+            <input type="button" value="4" onclick="Solve('4')">
+            <input type="button" value="5" onclick="Solve('5')">
+            <input type="button" value="6" onclick="Solve('6')">
+            <input type="button" value="-" onclick="Solve('-')"><br>
+
+            <input type="button" value="1" onclick="Solve('1')">
+            <input type="button" value="2" onclick="Solve('2')">
+            <input type="button" value="3" onclick="Solve('3')">
+            <input type="button" value="+" onclick="Solve('+')"><br>
+
+            <input type="button" value="00" onclick="Solve('00')">
+            <input type="button" value="0" onclick="Solve('0')">
+            <input type="button" value="." onclick="Solve('.')">
+            <input type="button" value="=" onclick="Result()">
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const Solve = (val) => {
+            const v = document.getElementById('ans');
+            if (val === 'x') {
+                v.value += '*';
+            } else {
+                v.value += val;
+            }
+        };
+
+        const Result = () => {
+            try {
+                const v1 = document.getElementById('ans').value;
+                const v2 = eval(v1);
+                document.getElementById('ans').value = v2;
+            } catch (e) {
+                alert("Operación inválida");
+            }
+        };
+
+        const Clear = () => {
+            document.getElementById('ans').value = '';
+        };
+
+        const Back = () => {
+            const input = document.getElementById('ans');
+            input.value = input.value.slice(0, -1);
+        };
+    </script>
+</body>
+</html>
